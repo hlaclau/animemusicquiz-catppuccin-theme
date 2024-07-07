@@ -1,0 +1,521 @@
+/* ==UserStyle==
+@name         AnimeMusicQuiz Catppuccin
+@namespace    github.com/lclhugo/CatppuccinMocha-AmqTheme
+@homepageURL  https://github.com/catppuccin/userstyles/tree/main/styles/github
+@version      1.0.0
+@updateURL    https://github.com/lclhugo/CatppuccinMocha-AmqTheme/blob/master/catppuccin.user.css
+@supportURL   https://github.com/lclhugo/CatppuccinMocha-AmqTheme/issues
+@description  Catppuccin Mocha Theme for AnimeMusicQuiz
+@author       Niz
+@license MIT
+==/UserStyle== */
+
+
+@-moz-document url-prefix("https://animemusicquiz.com/")
+{
+    /* Root Variables */
+    :root {
+        /* Base colors */
+        --base-hue: 240;
+        --base-saturation: 21%;
+        --base-lightness: 15%;
+
+        /* Surface colors */
+        --surface-hue: 240;
+        --surface-saturation: 21%;
+        --surface-lightness: 12%;
+
+        /* Accent colors */
+        --accent-hue: 266;
+        --accent-saturation: 85%;
+        --accent-lightness: 81%;
+
+        /* Text colors */
+        --text-hue: 0;
+        --text-saturation: 0%;
+        --text-lightness: 100%;
+
+        /* Factors for adjustments */
+        --dim-factor: 0.6;
+        --dim-factor-accent: 0.7;
+        --blur-factor: 2rem;
+
+        /* Derived colors */
+        --catppuccin-bg: hsl(
+                var(--base-hue),
+                var(--base-saturation),
+                var(--base-lightness)
+        );
+        --catppuccin-bg-transparent: hsla(
+                var(--base-hue),
+                var(--base-saturation),
+                var(--base-lightness),
+                var(--dim-factor-accent)
+        );
+
+        --catppuccin-surface: hsl(
+                var(--surface-hue),
+                var(--surface-saturation),
+                var(--surface-lightness)
+        );
+        --catppuccin-surface-transparent: hsla(
+                var(--surface-hue),
+                var(--surface-saturation),
+                var(--surface-lightness),
+                var(--dim-factor-accent)
+        );
+
+        --catppuccin-accent: hsl(
+                var(--accent-hue),
+                var(--accent-saturation),
+                var(--accent-lightness)
+        );
+        --catppuccin-accent-transparent: hsla(
+                var(--accent-hue),
+                var(--accent-saturation),
+                var(--accent-lightness),
+                var(--dim-factor-accent)
+        );
+        --catppuccin-accent-dim: hsl(
+                var(--accent-hue),
+                calc(var(--accent-saturation) * 0.7),
+                calc(var(--accent-lightness) * 0.5)
+        );
+
+        --catppuccin-text: hsl(
+                var(--text-hue),
+                var(--text-saturation),
+                var(--text-lightness)
+        );
+        --catppuccin-text-alt: hsl(var(--text-hue), var(--text-saturation), 74%);
+        --catppuccin-text-negative: hsl(
+                var(--text-hue),
+                var(--text-saturation),
+                0%
+        );
+
+        --catppuccin-button-alt: hsl(
+                var(--base-hue),
+                calc(var(--base-saturation) * 1.2),
+                calc(var(--base-lightness) * 1.1)
+        );
+
+        --full-transparency: hsla(0, 0%, 0%, 0);
+    }
+
+    /* Login screen */
+    #lpInfoContainer {
+        background: var(--catppuccin-bg);
+    }
+
+    /* Input styling */
+    textarea {
+        outline: none !important;
+    }
+
+    .textAreaContainer,
+    .swRightColumnActionButton,
+    .mhSettingContainer {
+        border: none !important;
+    }
+
+    .swal2-input {
+        border: solid 2px var(--catppuccin-accent) !important;
+    }
+
+    /* Layout fixes */
+    #rightMenuBarPartContainer::before {
+        left: -218px !important;
+    }
+
+    #mainMenuSocailButton {
+        width: 267px !important; /* Fix for friendlist not hiding completely */
+    }
+
+    #qpInfoHider {
+        height: 100% !important; /* Fix for infohider */
+    }
+
+    #qpCounterShadowHider {
+        padding-top: 4px !important; /* Fix for song counter */
+    }
+
+    /* Host accent transparency */
+    .lobbyAvatarHostSubTextContainer {
+        background: var(--catppuccin-accent-transparent) !important;
+        backdrop-filter: blur(var(--blur-factor)) !important;
+    }
+
+    /* Avatar border accent fix */
+    #avatarUserImgContainer {
+        border-top: var(--catppuccin-accent) !important;
+        border-left: var(--catppuccin-accent) !important;
+    }
+
+    /* Remove box shadows */
+    .menuBarMainButton:hover,
+    .btn-primary:hover,
+    .rightLeftButtonBottom,
+    #lobbyCountLoad {
+        box-shadow: none !important;
+    }
+
+    /* Add accent box shadows */
+    .lbReady .lobbyAvatarImgContainer,
+    #qpAnswerInputContainer.focused,
+    .qpVoteSkipGlowContainer,
+    #mainMenuSocailButton:hover {
+        box-shadow: 0 0 10px 2px var(--catppuccin-accent) !important;
+    }
+
+    .swTicketRollResultContainer {
+        box-shadow: var(--catppuccin-accent-dim) 0 0 10px 2px !important;
+    }
+
+    #qpAnswerInput.outline-visible {
+        box-shadow: 0 0 10px 2px var(--catppuccin-accent) !important;
+    }
+
+    /* Background styling */
+    #gameContainer,
+    #gameChatPage > .col-xs-9,
+    #loadingScreen {
+        background-image: none;
+        background-color: var(--catppuccin-bg);
+        animation: bg-change 10s infinite;
+    }
+
+    /* Quality menu fix */
+    #qpQualityList.show,
+    #qpQualityList:hover {
+        opacity: 1 !important;
+    }
+
+    #qpQualityList.show,
+    #qpQualityList {
+        opacity: 0;
+    }
+
+    /* Currency icon color adjustments */
+    .qcTokenIcon {
+        filter: hue-rotate(225deg);
+    }
+
+    .currencyIcon:not(#currencyTicketIcon) {
+        filter: hue-rotate(58deg);
+    }
+
+    #currencyTicketIcon,
+    .swTicketRollTicketIcon,
+    .swTicketRollPrice > img {
+        filter: hue-rotate(38deg);
+    }
+
+    /* Fully transparent background elements */
+    #loadBalanceStatusContainer,
+    #socialTab,
+    .tabContainer .tab::before,
+    #mhQuickSelectContainer > .tab,
+    .mhSettingCategory,
+    .chatTopBar,
+    .chatBoxFooter,
+    .chatBox::before,
+    #optionsContainer li,
+    .menuBar .popOut,
+    .flatTextInput[disabled],
+    #qpOptionContainerHider,
+    #qcHeader,
+    .qcProgressBarContainer,
+    .qcQuestTypeContainer,
+    .ppBadgeContainer,
+    .ppPlayerLevelLine,
+    .shGameTitleInner,
+    .shGameTitleLine,
+    .mpDriveEntryName::after,
+    .elQuestionSongNameContaniner::after,
+    .elQuestionSongArtistContainer::after,
+    #elQuestionInputSongName::after,
+    #elQuestionInputArtistName::after,
+    #swRightColumnBottom,
+    #swTicketAvatarLockingPromoContainer::before,
+    .swTicketOptionButton,
+    .mhctRowItem:nth-child(2n),
+    .mhctRow,
+    .mhCheckTableContainer,
+    .mhLoadEntryName::after,
+    .qpAvatarScoreContainer::after {
+        background: var(--full-transparency) !important;
+        background-color: var(--full-transparency) !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Accent as background */
+    #xpBarInner,
+    .menuBarMainButton,
+    .slider-handle,
+    .slider-selection,
+    .slider-tick.in-selection,
+    .btn-primary:hover,
+    .btn-primary,
+    #lobbyCountLoad,
+    .switchContainer > .slider-tick-container > .switchOn,
+    .switchContainer.active,
+    .qpVoteSkip.toggled,
+    #qpVideoProgressBar,
+    #qpUpvoteContainer.selected,
+    #qpDownvoteContainer.selected,
+    #qpReportContainer.selected,
+    #qpQualityList > li.selected,
+    #qpVolumeBarIndicator,
+    .qcProgressBar,
+    .qcQuestOuter.selected .qcQuestTypeContainer,
+    .qpAvatarHostIcon,
+    .qpAvatarHiddenIcon,
+    #qpAnswerStateContainerInner,
+    #swRightColumActionButtonMainContainer,
+    .swRightColumnActionButton,
+    .swTicketOptionButton.active,
+    .swTopBarAvatarImageContainer.selected,
+    .swTopBarSkinImageContainer.selected,
+    #swRightColumnSkinBonusBar,
+    #swRightColumnSkinBonusBar::after,
+    #swResonanceProgressBar,
+    .boardTab.selected,
+    .lbmBoardEntry.self > .lbmStandingNumber,
+    .switchContainer > .slider-tick-container > .switchOff,
+    .switchContainer > .slider-tick-container > .switchLeft,
+    .swal2-confirm,
+    .progress-bar {
+        background: var(--catppuccin-accent) !important;
+        background-color: var(--catppuccin-accent) !important;
+    }
+
+    /* Accent as color */
+    .customCheckbox label,
+    a,
+    #qpVolume,
+    .awesomplete mark,
+    #elQuestionInputState,
+    .fa-friend {
+        color: var(--catppuccin-accent) !important;
+    }
+
+    /* White text color */
+    .awesomplete > ul > li:hover,
+    .awesomplete > ul > li[aria-selected='true'],
+    .swal2-popup .swal2-title {
+        color: white !important;
+    }
+
+    /* Background non-transparent elements */
+    #mhQuickSelectContainer > .tab,
+    .mhSettingCategory,
+    .chatTopBar,
+    .chatBoxFooter,
+    .chatBox::before,
+    #optionsContainer li,
+    .menuBar .popOut,
+    #qpInfoHider,
+    .qpVideoOverlay,
+    #qpAnimeNameHider,
+    .floatingWindowHeader,
+    .shSongTable tr:first-child,
+    #qpCounter,
+    #qpAnswerInputContainer,
+    #qpAnimeNameContainer,
+    #qpSongInfoContainer,
+    #mpRankedTimer,
+    #mpRankedDescriptionButton,
+    #mpNewsContainer,
+    #mpNewsTitleShadowHider > div,
+    #mpNewSocailTab > div,
+    #mpNewsMerchTab > div,
+    .swTopBarImageContainer,
+    #swRightColumnLoreContainer,
+    #swRightColumnBonusContainer,
+    #swRightColumnAvatarBonusBar,
+    #swRightColumnAvatarBonusBar::after,
+    #swRightColumnTop,
+    #swRightColumnAvatarChangeBackgroundButton,
+    #swRightColumnAvatarToggleButton,
+    #swAvatarTokenContainer,
+    #swRhythmContainer,
+    .swInfoPopoutContainer,
+    .swInfoPopoutButton,
+    .swInfoPopoutContainer::after,
+    .lbmBoard,
+    .boardTabContainer,
+    .swal2-input,
+    .mhLoadEntryNameContainer,
+    #mhLoadHeader,
+    #mhLoadContainer,
+    .rbRoom,
+    #rbFilterContainer,
+    #rbSettingFilterContainer,
+    .qpMultipleChoiceEntryContainer.inactive .qpMultipleChoiceEntry {
+        background: var(--catppuccin-bg) !important;
+        background-color: var(--catppuccin-bg) !important;
+    }
+
+    /* Background transparent elements */
+    #gameChatContainer,
+    .menuBar,
+    .lobbyAvatarNameContainer,
+    .chatBoxContainer,
+    #rightMenuBarPartContainer::before,
+    .qpSingleRateContainer,
+    .flatTextInput,
+    #qpOptionContainer,
+    #qpQualityList,
+    .topRightBackButton,
+    #qcStickOut,
+    #socailTabFooter > .selected,
+    .ppPlayerLevelContainerInnser,
+    .ppPlayerLevelLowerBoarder.left,
+    .ppPlayerLevelLowerBoarder.right,
+    .ppPlayerLevelLowerBoarder > .ppPlayerLevelBoarderLineHider,
+    .ppPlayerLevelLowerBoarder > .ppPlayerLevelBoarderTopShadowHider,
+    .ppImageContainer,
+    .ppStatsNameContainer,
+    .ppFooterText,
+    .gcList > li,
+    .floatingWindow,
+    #asScriptWindow,
+    #qpStandingContainer,
+    #qpSideContainer,
+    #mpAvatarDriveHeaderShadowHider > div,
+    #mpAvatarDriveContainer,
+    .mpHalfStatContainer,
+    #mpDriveRecentHeaderShadowHider > div,
+    #mpDriveRecentContainer,
+    #mpDriveStandingHeaderShadowHider > div,
+    #mpDriveTopTabContainer .leftRightButtonTop.selected,
+    #elQuestionNoSongSelectedContainer,
+    #elCounterContainer,
+    #elQuestionFilter,
+    .elQuestion > div,
+    .elQuestionSongContainer > div,
+    #elInputVideoPreviewContainer,
+    #elInputStatusBar,
+    #elInputContainer,
+    #storeWindow,
+    .swal2-popup {
+        background: var(--catppuccin-bg-transparent) !important;
+        background-color: var(--catppuccin-bg-transparent) !important;
+        backdrop-filter: blur(var(--blur-factor));
+    }
+
+    /* Username styling */
+    .gcUserName {
+        background: var(--catppuccin-accent);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    /* Rainbow effect for own username */
+    .gcUserName:not(.clickAble) {
+        background-image: linear-gradient(
+                to left,
+                rgb(0, 255, 255),
+                rgb(255, 0, 255)
+        );
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    #qpAnswerInput:focus {
+        outline: none !important;
+    }
+
+    /* Background-alt non-transparent elements */
+    .tabContainer,
+    .tab-modal .modal-header,
+    .socialFooterTab,
+    .swRightColumnBonusCategory,
+    .swRightColumnExtraInfoOuter,
+    #menuBarOptionContainer,
+    .qpAvatarInfoBar {
+        background: var(--catppuccin-surface) !important;
+        background-color: var(--catppuccin-surface) !important;
+    }
+
+    /* Background-alt transparent elements (NO BLUR) */
+    .awesomplete > ul,
+    #mpDriveTopHeaderShadowHider > div,
+    #elQuestionFilterInput,
+    #swTicketRewardCenter,
+    #swTicketAvatarLockingContainer,
+    #swTicketOptionButtonContainer,
+    .swAvatarTile,
+    .swAvatarTileFooter,
+    #swTicketRollExecuteInner,
+    .lbmBoardEntry:nth-child(2n),
+    .mhCustomSliderContainer,
+    .filterContainer {
+        background: var(--catppuccin-surface-transparent) !important;
+        background-color: var(--catppuccin-surface-transparent) !important;
+    }
+
+    /* Background-alt transparent elements (WITH BLUR) */
+    #footerMenuBarBackground,
+    .modal-content,
+    .stPlayerName,
+    #gcChatMenu > div,
+    #questContainer,
+    .mpDriveEntry:nth-child(2n) {
+        background-color: var(--catppuccin-surface) !important;
+        backdrop-filter: blur(var(--blur-factor));
+    }
+
+    /* Background-alt2 non-transparent elements */
+    #mainMenuSocailButton,
+    textarea,
+    #gcChatMenu > div.selected,
+    .gcInputContainer,
+    .topMenuButton,
+    .topMenuBar > .topMenuBack,
+    .tabContainer .tab.selected::before,
+    #lobbyReadyCountLoad,
+    #optionsContainer li:hover,
+    .qpVoteState,
+    .qpVoteSkip,
+    #mpDriveDonationContainer > div,
+    .button,
+    #swRightColumnBonusTrackEndpoint,
+    #swRightColumnBonusTrackEndpoint::before,
+    #swRightColumnBonusTrack,
+    #swRightColumnAvatarPoseContainer,
+    #swRightColumnAvatarNameContainer,
+    #swResonanceProgressBarContainer,
+    .mhAdvancedContainerTitle,
+    .mhctRowNameContainer,
+    #rbSearchInputContainer > input,
+    #rbSearchContainer,
+    .qpAvatarLevelOuter,
+    .qpAvatarMultiChoiceIcon,
+    .qpAvatarScoreContainer {
+        background: var(--catppuccin-surface) !important;
+        background-color: var(--catppuccin-surface) !important;
+    }
+
+    /* Background-color-alt2 but don't overwrite image */
+    #swRightColumnAvatarImageContainer,
+    #swResonanceTargetContainer,
+    .rbrRoomImageContainer,
+    .qpAvatarImageContainer {
+        background-color: var(--catppuccin-surface) !important;
+    }
+
+    /* Background-alt2 transparent elements */
+    #xpBarOuter,
+    #gcChatContent > div:nth-child(2),
+    .awesomplete > ul > li:hover,
+    .awesomplete > ul > li[aria-selected='true'] {
+        background: var(--catppuccin-surface-transparent) !important;
+        background-color: var(--catppuccin-surface-transparent) !important;
+        backdrop-filter: blur(var(--blur-factor));
+    }
+}
