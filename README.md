@@ -7,7 +7,7 @@
 
 ## [Catppuccin](https://github.com/catppuccin/catppuccin) theme for [AnimeMusicQuiz](https://animemusicquiz.com/)
 
-Supports all Catppuccin flavors (Latte, Frappé, Macchiato, Mocha) and accent colors.
+Supports all dark theme Catppuccin flavors (Frappé, Macchiato, Mocha) and accent colors.
 
 
 <p align="center">
