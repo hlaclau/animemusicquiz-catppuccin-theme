@@ -1,155 +1,116 @@
 /* ==UserStyle==
-@name         AnimeMusicQuiz Catppuccin theme
-@namespace    github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme
-@homepageURL  https://github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme
-@version      1.0.1
-@updateURL    https://github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme/catppuccin.user.css
-@supportURL   https://github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme
-@description  Catppuccin Mocha Theme for AnimeMusicQuiz
-@author       hlaclau
+
+@name AnimeMusicQuiz Catppuccin Theme
+
+@namespace github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme
+
+@homepageURL https://github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme
+
+@version 1.1.0
+
+@updateURL https://github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme/raw/master/catppuccin.user.less
+
+@supportURL https://github.com/hlaclau/animemusicquiz-catppuccin-mocha-theme/issues
+
+@description Soothing pastel theme for AnimeMusicQuiz
+
+@author hlaclau
+
 @license MIT
+
+@preprocessor less
+
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
+
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+
+@var select accentColor "Accent" ["rosewater:Rosewater", "flamingo:Flamingo", "pink:Pink", "mauve:Mauve*", "red:Red", "maroon:Maroon", "peach:Peach", "yellow:Yellow", "green:Green", "teal:Teal", "blue:Blue", "sapphire:Sapphire", "sky:Sky", "lavender:Lavender", "subtext0:Gray"]
+
 ==/UserStyle== */
 
+@import "https://userstyles.catppuccin.com/lib/lib.less";
 
-@-moz-document url-prefix("https://animemusicquiz.com/")
-{
-    /* Root Variables */
-    :root {
-        /* Base colors */
-        --base-hue: 240;
-        --base-saturation: 21%;
-        --base-lightness: 15%;
-
-        /* Surface colors */
-        --surface-hue: 240;
-        --surface-saturation: 21%;
-        --surface-lightness: 12%;
-
-        /* Accent colors */
-        --accent-hue: 266;
-        --accent-saturation: 85%;
-        --accent-lightness: 81%;
-
-        /* Text colors */
-        --text-hue: 0;
-        --text-saturation: 0%;
-        --text-lightness: 100%;
-
-        /* Factors for adjustments */
-        --dim-factor: 0.6;
-        --dim-factor-accent: 0.7;
-        --blur-factor: 2rem;
-
-        /* Derived colors */
-        --catppuccin-bg: hsl(
-                var(--base-hue),
-                var(--base-saturation),
-                var(--base-lightness)
-        );
-        --catppuccin-bg-transparent: hsla(
-                var(--base-hue),
-                var(--base-saturation),
-                var(--base-lightness),
-                var(--dim-factor-accent)
-        );
-
-        --catppuccin-surface: hsl(
-                var(--surface-hue),
-                var(--surface-saturation),
-                var(--surface-lightness)
-        );
-        --catppuccin-surface-transparent: hsla(
-                var(--surface-hue),
-                var(--surface-saturation),
-                var(--surface-lightness),
-                var(--dim-factor-accent)
-        );
-
-        --catppuccin-accent: hsl(
-                var(--accent-hue),
-                var(--accent-saturation),
-                var(--accent-lightness)
-        );
-        --catppuccin-accent-transparent: hsla(
-                var(--accent-hue),
-                var(--accent-saturation),
-                var(--accent-lightness),
-                var(--dim-factor-accent)
-        );
-        --catppuccin-accent-dim: hsl(
-                var(--accent-hue),
-                calc(var(--accent-saturation) * 0.7),
-                calc(var(--accent-lightness) * 0.5)
-        );
-
-        --catppuccin-text: hsl(
-                var(--text-hue),
-                var(--text-saturation),
-                var(--text-lightness)
-        );
-        --catppuccin-text-alt: hsl(var(--text-hue), var(--text-saturation), 74%);
-        --catppuccin-text-negative: hsl(
-                var(--text-hue),
-                var(--text-saturation),
-                0%
-        );
-
-        --catppuccin-button-alt: hsl(
-                var(--base-hue),
-                calc(var(--base-saturation) * 1.2),
-                calc(var(--base-lightness) * 1.1)
-        );
-
-        --full-transparency: hsla(0, 0%, 0%, 0);
+@-moz-document url-prefix("https://animemusicquiz.com/") {
+  /* This section applies the light/dark themes automatically based on the user's system theme. */
+  :root {
+    @media (prefers-color-scheme: light) {
+      #catppuccin(@lightFlavor);
     }
+
+    @media (prefers-color-scheme: dark) {
+      #catppuccin(@darkFlavor);
+    }
+  }
+
+  #catppuccin(@flavor) {
+    #lib.palette();
+    #lib.defaults();
+
+    /* CSS Variables for compatibility */
+    --dim-factor: 0.6;
+    --dim-factor-accent: 0.7;
+    --blur-factor: 2rem;
+
+    --catppuccin-bg: @base;
+    --catppuccin-bg-transparent: fade(@base, 70%);
+    --catppuccin-surface: @mantle;
+    --catppuccin-surface-transparent: fade(@mantle, 70%);
+    --catppuccin-accent: @accent;
+    --catppuccin-accent-transparent: fade(@accent, 70%);
+    --catppuccin-accent-dim: fade(@accent, 50%);
+    --catppuccin-text: @text;
+    --catppuccin-text-alt: @subtext1;
+    --catppuccin-text-negative: @base;
+    --catppuccin-button-alt: @surface1;
+    --full-transparency: transparent;
 
     /* Login screen */
     #lpInfoContainer {
-        background: var(--catppuccin-bg);
+      background: @base;
     }
 
     /* Input styling */
     textarea {
-        outline: none !important;
+      outline: none !important;
     }
 
     .textAreaContainer,
     .swRightColumnActionButton,
     .mhSettingContainer {
-        border: none !important;
+      border: none !important;
     }
 
     .swal2-input {
-        border: solid 2px var(--catppuccin-accent) !important;
+      border: solid 2px @accent !important;
     }
 
     /* Layout fixes */
     #rightMenuBarPartContainer::before {
-        left: -218px !important;
+      left: -218px !important;
     }
 
     #mainMenuSocailButton {
-        width: 267px !important; /* Fix for friendlist not hiding completely */
+      width: 267px !important; /* Fix for friendlist not hiding completely */
     }
 
     #qpInfoHider {
-        height: 100% !important; /* Fix for infohider */
+      height: 100% !important; /* Fix for infohider */
     }
 
     #qpCounterShadowHider {
-        padding-top: 4px !important; /* Fix for song counter */
+      padding-top: 4px !important; /* Fix for song counter */
     }
 
     /* Host accent transparency */
     .lobbyAvatarHostSubTextContainer {
-        background: var(--catppuccin-accent-transparent) !important;
-        backdrop-filter: blur(var(--blur-factor)) !important;
+      background: fade(@accent, 70%) !important;
+      backdrop-filter: blur(2rem) !important;
     }
 
     /* Avatar border accent fix */
     #avatarUserImgContainer {
-        border-top: var(--catppuccin-accent) !important;
-        border-left: var(--catppuccin-accent) !important;
+      border-top: @accent !important;
+      border-left: @accent !important;
     }
 
     /* Remove box shadows */
@@ -157,7 +118,7 @@
     .btn-primary:hover,
     .rightLeftButtonBottom,
     #lobbyCountLoad {
-        box-shadow: none !important;
+      box-shadow: none !important;
     }
 
     /* Add accent box shadows */
@@ -165,50 +126,50 @@
     #qpAnswerInputContainer.focused,
     .qpVoteSkipGlowContainer,
     #mainMenuSocailButton:hover {
-        box-shadow: 0 0 10px 2px var(--catppuccin-accent) !important;
+      box-shadow: 0 0 10px 2px @accent !important;
     }
 
     .swTicketRollResultContainer {
-        box-shadow: var(--catppuccin-accent-dim) 0 0 10px 2px !important;
+      box-shadow: fade(@accent, 50%) 0 0 10px 2px !important;
     }
 
     #qpAnswerInput.outline-visible {
-        box-shadow: 0 0 10px 2px var(--catppuccin-accent) !important;
+      box-shadow: 0 0 10px 2px @accent !important;
     }
 
     /* Background styling */
     #gameContainer,
     #gameChatPage > .col-xs-9,
     #loadingScreen {
-        background-image: none;
-        background-color: var(--catppuccin-bg);
-        animation: bg-change 10s infinite;
+      background-image: none;
+      background-color: @base;
+      animation: bg-change 10s infinite;
     }
 
     /* Quality menu fix */
     #qpQualityList.show,
     #qpQualityList:hover {
-        opacity: 1 !important;
+      opacity: 1 !important;
     }
 
     #qpQualityList.show,
     #qpQualityList {
-        opacity: 0;
+      opacity: 0;
     }
 
     /* Currency icon color adjustments */
     .qcTokenIcon {
-        filter: hue-rotate(225deg);
+      filter: hue-rotate(225deg);
     }
 
     .currencyIcon:not(#currencyTicketIcon) {
-        filter: hue-rotate(58deg);
+      filter: hue-rotate(58deg);
     }
 
     #currencyTicketIcon,
     .swTicketRollTicketIcon,
     .swTicketRollPrice > img {
-        filter: hue-rotate(38deg);
+      filter: hue-rotate(38deg);
     }
 
     /* Fully transparent background elements */
@@ -244,10 +205,10 @@
     .mhCheckTableContainer,
     .mhLoadEntryName::after,
     .qpAvatarScoreContainer::after {
-        background: var(--full-transparency) !important;
-        background-color: var(--full-transparency) !important;
-        border: none !important;
-        box-shadow: none !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
     /* Accent as background */
@@ -287,8 +248,8 @@
     .switchContainer > .slider-tick-container > .switchLeft,
     .swal2-confirm,
     .progress-bar {
-        background: var(--catppuccin-accent) !important;
-        background-color: var(--catppuccin-accent) !important;
+      background: @accent !important;
+      background-color: @accent !important;
     }
 
     /* Accent as color */
@@ -298,14 +259,14 @@
     .awesomplete mark,
     #elQuestionInputState,
     .fa-friend {
-        color: var(--catppuccin-accent) !important;
+      color: @accent !important;
     }
 
-    /* White text color */
+    /* Text color */
     .awesomplete > ul > li:hover,
     .awesomplete > ul > li[aria-selected='true'],
     .swal2-popup .swal2-title {
-        color: white !important;
+      color: @text !important;
     }
 
     /* Background non-transparent elements */
@@ -354,8 +315,8 @@
     #rbFilterContainer,
     #rbSettingFilterContainer,
     .qpMultipleChoiceEntryContainer.inactive .qpMultipleChoiceEntry {
-        background: var(--catppuccin-bg) !important;
-        background-color: var(--catppuccin-bg) !important;
+      background: @base !important;
+      background-color: @base !important;
     }
 
     /* Background transparent elements */
@@ -401,33 +362,33 @@
     #elInputContainer,
     #storeWindow,
     .swal2-popup {
-        background: var(--catppuccin-bg-transparent) !important;
-        background-color: var(--catppuccin-bg-transparent) !important;
-        backdrop-filter: blur(var(--blur-factor));
+      background: fade(@base, 70%) !important;
+      background-color: fade(@base, 70%) !important;
+      backdrop-filter: blur(2rem);
     }
 
     /* Username styling */
     .gcUserName {
-        background: var(--catppuccin-accent);
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
+      background: @accent;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
     }
 
     /* Rainbow effect for own username */
     .gcUserName:not(.clickAble) {
-        background-image: linear-gradient(
-                to left,
-                rgb(0, 255, 255),
-                rgb(255, 0, 255)
-        );
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
+      background-image: linear-gradient(
+        to left,
+        rgb(0, 255, 255),
+        rgb(255, 0, 255)
+      );
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
     }
 
     #qpAnswerInput:focus {
-        outline: none !important;
+      outline: none !important;
     }
 
     /* Background-alt non-transparent elements */
@@ -438,8 +399,8 @@
     .swRightColumnExtraInfoOuter,
     #menuBarOptionContainer,
     .qpAvatarInfoBar {
-        background: var(--catppuccin-surface) !important;
-        background-color: var(--catppuccin-surface) !important;
+      background: @mantle !important;
+      background-color: @mantle !important;
     }
 
     /* Background-alt transparent elements (NO BLUR) */
@@ -455,8 +416,8 @@
     .lbmBoardEntry:nth-child(2n),
     .mhCustomSliderContainer,
     .filterContainer {
-        background: var(--catppuccin-surface-transparent) !important;
-        background-color: var(--catppuccin-surface-transparent) !important;
+      background: fade(@mantle, 70%) !important;
+      background-color: fade(@mantle, 70%) !important;
     }
 
     /* Background-alt transparent elements (WITH BLUR) */
@@ -466,8 +427,8 @@
     #gcChatMenu > div,
     #questContainer,
     .mpDriveEntry:nth-child(2n) {
-        background-color: var(--catppuccin-surface) !important;
-        backdrop-filter: blur(var(--blur-factor));
+      background-color: @mantle !important;
+      backdrop-filter: blur(2rem);
     }
 
     /* Background-alt2 non-transparent elements */
@@ -497,8 +458,8 @@
     .qpAvatarLevelOuter,
     .qpAvatarMultiChoiceIcon,
     .qpAvatarScoreContainer {
-        background: var(--catppuccin-surface) !important;
-        background-color: var(--catppuccin-surface) !important;
+      background: @surface0 !important;
+      background-color: @surface0 !important;
     }
 
     /* Background-color-alt2 but don't overwrite image */
@@ -506,7 +467,7 @@
     #swResonanceTargetContainer,
     .rbrRoomImageContainer,
     .qpAvatarImageContainer {
-        background-color: var(--catppuccin-surface) !important;
+      background-color: @surface0 !important;
     }
 
     /* Background-alt2 transparent elements */
@@ -514,8 +475,10 @@
     #gcChatContent > div:nth-child(2),
     .awesomplete > ul > li:hover,
     .awesomplete > ul > li[aria-selected='true'] {
-        background: var(--catppuccin-surface-transparent) !important;
-        background-color: var(--catppuccin-surface-transparent) !important;
-        backdrop-filter: blur(var(--blur-factor));
+      background: fade(@surface0, 70%) !important;
+      background-color: fade(@surface0, 70%) !important;
+      backdrop-filter: blur(2rem);
     }
+  }
 }
+
